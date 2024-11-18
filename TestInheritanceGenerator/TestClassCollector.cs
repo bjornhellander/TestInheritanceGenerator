@@ -63,6 +63,19 @@ namespace TestInheritanceGenerator
                 }
             }
 
+            foreach (var method in symbol.GetMembers().OfType<IMethodSymbol>())
+            {
+                foreach (var attr in method.GetAttributes())
+                {
+                    var attrName = attr.AttributeClass?.Name;
+                    if (attrName == "FactAttribute" || attrName == "TheoryAttribute")
+                    {
+                        attributeName = null;
+                        return true;
+                    }
+                }
+            }
+
             attributeName = null;
             return false;
         }

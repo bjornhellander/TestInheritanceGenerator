@@ -131,7 +131,7 @@ namespace TestInheritanceGenerator
                 var source = $@"
 namespace {type.Namespace.Replace(data.BaseAssemblyVersion, data.Version)}
 {{
-    [{type.AttributeName}]
+    {(type.AttributeName != null ? $"[{type.AttributeName}]" : "")}
     public partial class {type.Name} : {type.Namespace}.{type.Name}
     {{
     }}
