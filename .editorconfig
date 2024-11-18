@@ -24,5 +24,8 @@ dotnet_diagnostic.IDE0130.severity = warning
 dotnet_diagnostic.IDE0160.severity = warning
 csharp_style_namespace_declarations = block_scoped
 
+# IDE0290: Use primary constructor
+dotnet_diagnostic.IDE0290.severity = none
+
 # CS1591: Missing XML comment for publicly visible type or member
 dotnet_diagnostic.CS1591.severity = none
