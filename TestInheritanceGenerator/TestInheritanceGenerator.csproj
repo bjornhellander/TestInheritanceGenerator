@@ -4,25 +4,27 @@
 		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-		<!-- Do not include the generator as a lib dependency -->
-		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<DevelopmentDependency>true</DevelopmentDependency>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<Description>
-			Source generator package adding automatic test class inheritance if you have test projects for multiple versions of an API that you want to test.
+			Source generator package which adds automatic test class inheritance from another test project.
+			Handy if you have test projects per version of some software component and want to run all tests written for a previous version as well.
 		</Description>
 		<PackageVersion>1.0.0.0-rc1</PackageVersion>
 		<Authors>Björn Hellander</Authors>
-		<PackageLicenseExpression>Unilicense</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/bjornhellander/Roslyn.CodeAnalysis.Lightup</PackageProjectUrl>
+		<PackageLicenseExpression>MIT-0</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/bjornhellander/TestInheritanceGenerator</PackageProjectUrl>
 		<!--<PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>-->
-		<RepositoryUrl>https://github.com/bjornhellander/Roslyn.CodeAnalysis.Lightup</RepositoryUrl>
+		<RepositoryUrl>https://github.com/bjornhellander/TestInheritanceGenerator</RepositoryUrl>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<Copyright>Copyright © Björn Hellander 2024. Licensed under the Unilicense.</Copyright>
+		<Copyright>Copyright © Björn Hellander 2024. Licensed under the MIT No Attribution license.</Copyright>
 		<PackageTags>Source Generator, Test</PackageTags>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
+		<!-- Do not include the generator as a lib dependency -->
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<DevelopmentDependency>true</DevelopmentDependency>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
