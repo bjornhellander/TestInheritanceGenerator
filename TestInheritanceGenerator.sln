@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInheritanceGenerator", "TestInheritanceGenerator\TestInheritanceGenerator.csproj", "{AA89D53D-61E8-4901-AE7C-6A3B840DF82E}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.XUnitTest1", "Example.XUnitTest1\Example.XUnitTest1.csproj", "{DEB486F2-029A-4D0D-B016-9A468A1EB5DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.XUnitTest2", "Example.XUnitTest2\Example.XUnitTest2.csproj", "{59D8AA5C-2497-4ED3-B2CE-5F93FD2F1D02}"
@@ -24,6 +26,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9BFF3348-BDC2-416D-98A0-176F3CEF7D02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F38380FB-3524-4148-B85E-213BDE1205E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,9 +61,22 @@ Global
 		{58A23FB0-3B0B-4EA9-A392-656AD06E0ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58A23FB0-3B0B-4EA9-A392-656AD06E0ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58A23FB0-3B0B-4EA9-A392-656AD06E0ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA89D53D-61E8-4901-AE7C-6A3B840DF82E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA89D53D-61E8-4901-AE7C-6A3B840DF82E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA89D53D-61E8-4901-AE7C-6A3B840DF82E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA89D53D-61E8-4901-AE7C-6A3B840DF82E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AA89D53D-61E8-4901-AE7C-6A3B840DF82E} = {9BFF3348-BDC2-416D-98A0-176F3CEF7D02}
+		{DEB486F2-029A-4D0D-B016-9A468A1EB5DE} = {F38380FB-3524-4148-B85E-213BDE1205E6}
+		{59D8AA5C-2497-4ED3-B2CE-5F93FD2F1D02} = {F38380FB-3524-4148-B85E-213BDE1205E6}
+		{E9AAAA81-BE82-465D-8D4E-217F3088A4EC} = {F38380FB-3524-4148-B85E-213BDE1205E6}
+		{857951A4-0CC2-4C94-8A72-F5AB30CCCF35} = {F38380FB-3524-4148-B85E-213BDE1205E6}
+		{E87AF952-7029-4F58-BF2D-A1142A7B9CA7} = {F38380FB-3524-4148-B85E-213BDE1205E6}
+		{58A23FB0-3B0B-4EA9-A392-656AD06E0ABF} = {F38380FB-3524-4148-B85E-213BDE1205E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39E508F1-1F72-4403-8768-88674AA3A68D}

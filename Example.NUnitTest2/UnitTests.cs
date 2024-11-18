@@ -2,9 +2,8 @@ using NUnit.Framework;
 
 namespace Example.NUnitTest2
 {
-    public class UnitTests : NUnitTest1.UnitTests
+    public partial class UnitTests
     {
-
         [Test]
         public void Test2()
         {
