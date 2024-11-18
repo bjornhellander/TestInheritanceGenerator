@@ -21,5 +21,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Example.NUnitTest1\Example.NUnitTest1.csproj" />
+		<ProjectReference Include="..\TestInheritanceGenerator\TestInheritanceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 </Project>

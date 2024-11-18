@@ -67,11 +67,17 @@ namespace TestInheritanceGenerator
             {
                 foreach (var attr in method.GetAttributes())
                 {
-                    var attrName = attr.AttributeClass?.Name;
-                    if (attrName == "FactAttribute" || attrName == "TheoryAttribute")
+                    switch (attr.AttributeClass?.Name)
                     {
-                        attributeName = null;
-                        return true;
+                        case "FactAttribute":
+                        case "TheoryAttribute":
+                        case "TestAttribute":
+                        case "TestCaseAttriute":
+                            attributeName = null;
+                            return true;
+
+                        default:
+                            break;
                     }
                 }
             }
