@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
@@ -15,14 +14,12 @@ namespace TestInheritanceGenerator
     [Generator]
     public partial class InheritanceGenerator : IIncrementalGenerator
     {
-        private static readonly Regex AssemblyNameRegex = new("(.*)(\\d+(_\\d+)*)$");
-
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
             var assemblyData = context.CompilationProvider.Select((compilation, cancellationToken) =>
             {
                 // System.Diagnostics.Debugger.Launch();
-                if (!TryGetPrefixAndVersion(compilation, out var assemblyPrefix, out var assemblyVersion))
+                if (!Helpers.TryGetAssemblyNamePrefixAndVersion(compilation.AssemblyName, out var assemblyPrefix, out var assemblyVersion))
                 {
                     return null;
                 }
@@ -40,25 +37,6 @@ namespace TestInheritanceGenerator
             context.RegisterSourceOutput(assemblyData, Execute);
         }
 
-        private static bool TryGetPrefixAndVersion(
-            Compilation compilation,
-            [NotNullWhen(returnValue: true)] out string? assemblyPrefix,
-            [NotNullWhen(returnValue: true)] out string? assemblyVersion)
-        {
-            var currentAssemblyName = compilation.AssemblyName ?? string.Empty;
-            var match = AssemblyNameRegex.Match(currentAssemblyName);
-            if (!match.Success)
-            {
-                assemblyPrefix = null;
-                assemblyVersion = null;
-                return false;
-            }
-
-            assemblyPrefix = match.Groups[1].Value;
-            assemblyVersion = match.Groups[2].Value;
-            return true;
-        }
-
         private static bool TryGetBaseAssembly(
             Compilation compilation,
             string assemblyPrefix,
@@ -68,21 +46,18 @@ namespace TestInheritanceGenerator
             (IAssemblySymbol Assembly, Version Version, string StrVersion)? bestMatch = null;
             foreach (var referencedAssembly in compilation.Assembly.Modules.First().ReferencedAssemblySymbols)
             {
-                var match = AssemblyNameRegex.Match(referencedAssembly.Name);
-                if (!match.Success)
+                if (!Helpers.TryGetAssemblyNamePrefixAndVersion(referencedAssembly.Name, out var referencedAssemblyPrefix, out var referencedAssemblyStrVersion))
                 {
                     // Not a relevant reference
                     continue;
                 }
 
-                var referencedAssemblyPrefix = match.Groups[1].Value;
                 if (referencedAssemblyPrefix != assemblyPrefix)
                 {
                     // Not a relevant reference
                     continue;
                 }
 
-                var referencedAssemblyStrVersion = match.Groups[2].Value;
                 var referencedAssemblyVersion = ParseVersion(referencedAssemblyStrVersion);
                 if (bestMatch != null && referencedAssemblyVersion < bestMatch.Value.Version)
                 {
