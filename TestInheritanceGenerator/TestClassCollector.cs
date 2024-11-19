@@ -1,7 +1,4 @@
-﻿// Copyright © Björn Hellander 2024
-// Licensed under the MIT License. See LICENSE.txt in the repository root for license information.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 
@@ -54,7 +51,6 @@ namespace TestInheritanceGenerator
         {
             foreach (var attr in symbol.GetAttributes())
             {
-                // TODO: Support other frameworks?
                 if (attr.AttributeClass?.Name == "TestClassAttribute")
                 {
                     // TODO: Avoid allocation?
