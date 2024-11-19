@@ -5,7 +5,7 @@ namespace TestInheritanceGenerator
 {
     internal class Helpers
     {
-        private static readonly Regex AssemblyNameRegex = new("(.*)(\\d+(_\\d+)*)$");
+        private static readonly Regex AssemblyNameRegex = new("^(.*?)(\\d+(_\\d+)*)$");
 
         public static bool TryGetAssemblyNamePrefixAndVersion(
             string? assemblyName,
