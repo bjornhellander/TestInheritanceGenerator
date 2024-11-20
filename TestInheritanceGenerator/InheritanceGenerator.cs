@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace TestInheritanceGenerator
 {
     [Generator]
-    public partial class InheritanceGenerator : IIncrementalGenerator
+    public class InheritanceGenerator : IIncrementalGenerator
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
@@ -41,7 +41,8 @@ namespace TestInheritanceGenerator
             [NotNullWhen(returnValue: true)] out string? baseAssemblyVersion)
         {
             (IAssemblySymbol Assembly, Version Version, string StrVersion)? bestMatch = null;
-            foreach (var referencedAssembly in compilation.Assembly.Modules.First().ReferencedAssemblySymbols)
+            var referencedAssemblies = compilation.Assembly.Modules.First().ReferencedAssemblySymbols;
+            foreach (var referencedAssembly in referencedAssemblies)
             {
                 if (!Helpers.TryGetAssemblyNamePrefixAndVersion(referencedAssembly.Name, out var referencedAssemblyPrefix, out var referencedAssemblyStrVersion))
                 {
@@ -108,7 +109,7 @@ namespace {type.Namespace.Replace(data.BaseAssemblyVersion, data.Version)}
     {{
     }}
 }}
-    ";
+";
                 context.AddSource($"{type.Name}.g.cs", SourceText.From(source, System.Text.Encoding.UTF8));
             }
         }
