@@ -6,6 +6,7 @@ namespace TestInheritanceGenerator
 {
     internal class TestClassCollector : SymbolVisitor
     {
+        private readonly Dictionary<INamedTypeSymbol, string> attributeTypeNameCache = new(SymbolEqualityComparer.Default);
         private readonly ICollection<TestTypeData> testTypes;
 
         public TestClassCollector(ICollection<TestTypeData> testTypes)
@@ -47,14 +48,26 @@ namespace TestInheritanceGenerator
             testTypes.Add(testType);
         }
 
-        private static bool IsTestType(INamedTypeSymbol symbol, out string? attributeName)
+        private bool IsTestType(INamedTypeSymbol symbol, out string? attributeName)
         {
             foreach (var attr in symbol.GetAttributes())
             {
-                if (attr.AttributeClass?.Name == "TestClassAttribute")
+                var attributeClass = attr.AttributeClass;
+                if (attributeClass == null)
                 {
-                    // TODO: Avoid allocation?
-                    attributeName = attr.AttributeClass.ToDisplayString();
+                    continue;
+                }
+
+                if (attributeTypeNameCache.TryGetValue(attributeClass, out var typeName))
+                {
+                    attributeName = typeName;
+                    return true;
+                }
+
+                if (attributeClass.Name == "TestClassAttribute")
+                {
+                    attributeName = attributeClass.ToDisplayString();
+                    attributeTypeNameCache.Add(attributeClass, attributeName);
                     return true;
                 }
             }
