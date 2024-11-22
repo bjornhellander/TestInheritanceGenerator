@@ -17,32 +17,32 @@ namespace TestInheritanceGenerator
 
         private static readonly DiagnosticDescriptor IncorrectAssemblyNameDescriptor = new(
             IncorrectAssemblyNameDiagnosticId,
-            "Use consistent line endings",
-            "Use consistent line endings",
+            "Incorrect assembly name",
+            "Incorrect assembly name",
             "SourceGenerator",
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true,
-            description: "Use consistent line endings.",
+            description: "To use TestInheritanceGenerator, the assembly name needs to end with a version number.",
             customTags: WellKnownDiagnosticTags.CompilationEnd);
 
         private static readonly DiagnosticDescriptor NoBaseAssemblyDescriptor = new(
             NoBaseAssemblyDiagnosticId,
-            "Use consistent line endings",
-            "Use consistent line endings",
+            "No base assembly",
+            "No base assembly",
             "SourceGenerator",
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true,
-            description: "Use consistent line endings.",
+            description: "To use TestInheritanceGenerator, an assembly with a matching name needs to be referenced.",
             customTags: WellKnownDiagnosticTags.CompilationEnd);
 
         private static readonly DiagnosticDescriptor NoBaseTestsDescriptor = new(
             NoBaseTestsDiagnosticId,
-            "Use consistent line endings",
-            "Use consistent line endings",
+            "No tests in base assembly",
+            "No tests in base assembly",
             "SourceGenerator",
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true,
-            description: "Use consistent line endings.",
+            description: "No test classes where found in the base assembly.",
             customTags: WellKnownDiagnosticTags.CompilationEnd);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
