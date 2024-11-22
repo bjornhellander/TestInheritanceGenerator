@@ -81,7 +81,7 @@ namespace TestInheritanceGenerator
                         case "FactAttribute":
                         case "TheoryAttribute":
                         case "TestAttribute":
-                        case "TestCaseAttriute":
+                        case "TestCaseAttribute":
                             attributeName = null;
                             return true;
 
