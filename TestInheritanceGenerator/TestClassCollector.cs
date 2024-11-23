@@ -7,9 +7,9 @@ namespace TestInheritanceGenerator
     internal class TestClassCollector : SymbolVisitor
     {
         private readonly Dictionary<INamedTypeSymbol, string> attributeTypeNameCache = new(SymbolEqualityComparer.Default);
-        private readonly ICollection<TestTypeData> testTypes;
+        private readonly ValueSemanticsList<TestTypeData> testTypes;
 
-        public TestClassCollector(ICollection<TestTypeData> testTypes)
+        public TestClassCollector(ValueSemanticsList<TestTypeData> testTypes)
         {
             this.testTypes = testTypes;
         }

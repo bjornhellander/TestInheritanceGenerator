@@ -74,7 +74,7 @@ namespace TestInheritanceGenerator
             }
 
             var types = Helpers.GetTestTypes(baseAssembly);
-            if (types.Length == 0)
+            if (types.Count == 0)
             {
                 ReportDiagnostic(context, NoBaseTestsDescriptor);
                 return;
