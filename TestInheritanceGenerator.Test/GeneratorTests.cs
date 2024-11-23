@@ -222,6 +222,52 @@ namespace TestNamespace.V1
             await tester.RunAsync();
         }
 
+        [TestMethod]
+        public async Task TestMultipleBaseTypes()
+        {
+            var sourceCode1 = CreateSourceCode("TestNamespace.V1", "FooTests");
+            var sourceCode2 = CreateSourceCode("TestNamespace.V1", "BarTests");
+            var generatedCode1 = CreateGeneratedCode("TestNamespace.V1", "TestNamespace.V2", "FooTests");
+            var generatedCode2 = CreateGeneratedCode("TestNamespace.V1", "TestNamespace.V2", "BarTests");
+
+            var tester = new CSharpSourceGeneratorTest<InheritanceGenerator, DefaultVerifier>
+            {
+                TestState =
+                {
+                    Sources = { "" },
+                    GeneratedSources =
+                    {
+                        (typeof(InheritanceGenerator), $"FooTests.g.cs", SourceText.From(generatedCode1, Encoding.UTF8)),
+                        (typeof(InheritanceGenerator), $"BarTests.g.cs", SourceText.From(generatedCode2, Encoding.UTF8)),
+                    },
+                    AdditionalProjectReferences =
+                    {
+                        "Example.Tests1",
+                    },
+                    AdditionalProjects =
+                    {
+                        ["Example.Tests1"] =
+                        {
+                            Sources =
+                            {
+                                ("FooTests.cs", sourceCode1),
+                                ("BarTests.cs", sourceCode2),
+                            },
+                        },
+                    },
+                },
+                ReferenceAssemblies = CreateReferenceAssemblies(),
+            };
+
+            tester.SolutionTransforms.Add((solution, projectId) =>
+            {
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests2");
+                return solution;
+            });
+
+            await tester.RunAsync();
+        }
+
         private ReferenceAssemblies CreateReferenceAssemblies()
         {
             return AddReferenceAssemblies(ReferenceAssemblies.Net.Net80);
