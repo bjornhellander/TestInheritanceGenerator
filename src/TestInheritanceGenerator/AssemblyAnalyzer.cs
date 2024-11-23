@@ -22,6 +22,7 @@ namespace TestInheritanceGenerator
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true,
             description: "To use TestInheritanceGenerator, the assembly name needs to end with a version number.",
+            helpLinkUri: "https://github.com/bjornhellander/TestInheritanceGenerator/blob/master/doc/TestInh001.md",
             customTags: WellKnownDiagnosticTags.CompilationEnd);
 
         private static readonly DiagnosticDescriptor NoBaseAssemblyDescriptor = new(
@@ -32,6 +33,7 @@ namespace TestInheritanceGenerator
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true,
             description: "To use TestInheritanceGenerator, an assembly with a matching name needs to be referenced.",
+            helpLinkUri: "https://github.com/bjornhellander/TestInheritanceGenerator/blob/master/doc/TestInh002.md",
             customTags: WellKnownDiagnosticTags.CompilationEnd);
 
         private static readonly DiagnosticDescriptor NoBaseTestsDescriptor = new(
@@ -42,6 +44,7 @@ namespace TestInheritanceGenerator
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true,
             description: "No test classes where found in the base assembly.",
+            helpLinkUri: "https://github.com/bjornhellander/TestInheritanceGenerator/blob/master/doc/TestInh003.md",
             customTags: WellKnownDiagnosticTags.CompilationEnd);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>

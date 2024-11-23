@@ -23,6 +23,6 @@ The package has support for the following test frameworks:
 ## Analyzers
 
 The following diagnostics are reported as guidance, if no tests are being generated:
-* [TestInherit001 - Incorrect assembly name](doc/TestInherit001.md)
-* [TestInherit002 - No base assembly](doc/TestInherit002.md)
-* [TestInherit003 - No tests in base assembly](doc/TestInherit003.md)
+* [TestInherit001 - Incorrect assembly name](https://github.com/bjornhellander/TestInheritanceGenerator/blob/master/doc/TestInh001.md)
+* [TestInherit002 - No base assembly](https://github.com/bjornhellander/TestInheritanceGenerator/blob/master/doc/TestInh002.md)
+* [TestInherit003 - No tests in base assembly](https://github.com/bjornhellander/TestInheritanceGenerator/blob/master/doc/TestInh003.md)
