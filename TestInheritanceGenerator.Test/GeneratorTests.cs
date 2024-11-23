@@ -131,6 +131,103 @@ namespace TestNamespace.V1
         }
 
         [TestMethod]
+        public async Task TestIrrelevantTypeAttribute()
+        {
+            var sourceCode1 = $@"
+namespace TestNamespace.V1
+{{
+    [System.CLSCompliantAttribute(false)]
+    public class TheTests
+    {{
+    }}
+}}
+";
+            var generatedCode = CreateGeneratedCode("TestNamespace.V1", "TestNamespace.V2", "TheTests");
+
+            var tester = new CSharpSourceGeneratorTest<InheritanceGenerator, DefaultVerifier>
+            {
+                TestState =
+                {
+                    Sources = { "" },
+                    GeneratedSources = { },
+                    AdditionalProjectReferences =
+                    {
+                        "Example.Tests1",
+                    },
+                    AdditionalProjects =
+                    {
+                        ["Example.Tests1"] =
+                        {
+                            Sources =
+                            {
+                                ("Tests.cs", sourceCode1),
+                            },
+                        },
+                    },
+                },
+                ReferenceAssemblies = CreateReferenceAssemblies(),
+            };
+
+            tester.SolutionTransforms.Add((solution, projectId) =>
+            {
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests2");
+                return solution;
+            });
+
+            await tester.RunAsync();
+        }
+
+        [TestMethod]
+        public async Task TestIrrelevantMethodAttribute()
+        {
+            var sourceCode1 = $@"
+namespace TestNamespace.V1
+{{
+    public class TheTests
+    {{
+        [System.CLSCompliantAttribute(false)]
+        public void Test1()
+        {{
+        }}
+    }}
+}}
+";
+            var generatedCode = CreateGeneratedCode("TestNamespace.V1", "TestNamespace.V2", "TheTests");
+
+            var tester = new CSharpSourceGeneratorTest<InheritanceGenerator, DefaultVerifier>
+            {
+                TestState =
+                {
+                    Sources = { "" },
+                    GeneratedSources = { },
+                    AdditionalProjectReferences =
+                    {
+                        "Example.Tests1",
+                    },
+                    AdditionalProjects =
+                    {
+                        ["Example.Tests1"] =
+                        {
+                            Sources =
+                            {
+                                ("Tests.cs", sourceCode1),
+                            },
+                        },
+                    },
+                },
+                ReferenceAssemblies = CreateReferenceAssemblies(),
+            };
+
+            tester.SolutionTransforms.Add((solution, projectId) =>
+            {
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests2");
+                return solution;
+            });
+
+            await tester.RunAsync();
+        }
+
+        [TestMethod]
         public async Task TestNonTestBaseType()
         {
             var sourceCode1 = $@"
