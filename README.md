@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This package generates test class "stubs" which inherit from test classes in a referenced test project.
+This source generator package generates test class "stubs" which inherit from test classes in a referenced test project.
 The typical use case is if you have test projects per version of some software component and you want all tests
 for the previous version to be executed for the next version as well. This is accomplished automatically by this
 package by generating a file for each found test class in the referenced test project and by adding inheritance
@@ -26,3 +26,7 @@ The following diagnostics are reported as guidance, if no tests are being genera
 * [TestInherit001 - Incorrect assembly name](https://github.com/bjornhellander/TestInheritanceGenerator/blob/master/doc/TestInh001.md)
 * [TestInherit002 - No base assembly](https://github.com/bjornhellander/TestInheritanceGenerator/blob/master/doc/TestInh002.md)
 * [TestInherit003 - No tests in base assembly](https://github.com/bjornhellander/TestInheritanceGenerator/blob/master/doc/TestInh003.md)
+
+## Credit
+
+This work is heavily inspired by a similar source generator implemented by [Sam Harwell](https://github.com/sharwell) in [StyleCop.Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers).
