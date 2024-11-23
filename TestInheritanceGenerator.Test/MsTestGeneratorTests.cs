@@ -12,7 +12,7 @@ namespace TestInheritanceGenerator.Test
             return result;
         }
 
-        protected override string CreateSourceCode(string @namespace, string name)
+        protected override string CreateSourceCode(string @namespace, string name, string extraTypeKeywords)
         {
             var result = $@"
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,7 +20,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace {@namespace}
 {{
     [TestClass]
-    public class {name}
+    public {extraTypeKeywords}class {name}
     {{
     }}
 }}";
