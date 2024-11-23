@@ -7,20 +7,19 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-		<PackageReference Include="NUnit" Version="4.2.2" />
-		<PackageReference Include="NUnit.Analyzers" Version="4.4.0">
-			<PrivateAssets>all</PrivateAssets>
+		<PackageReference Include="xunit" Version="2.9.2" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="3.0.0-pre.30">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
 		<PackageReference Include="coverlet.collector" Version="6.0.2">
-			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Example.NUnitTest1\Example.NUnitTest1.csproj" />
-		<ProjectReference Include="..\TestInheritanceGenerator\TestInheritanceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\Example.XUnitTest1\Example.XUnitTest1.csproj" />
+		<ProjectReference Include="..\..\src\TestInheritanceGenerator\TestInheritanceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 </Project>
