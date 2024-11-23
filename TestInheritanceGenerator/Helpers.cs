@@ -1,7 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
 using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -80,12 +78,12 @@ namespace TestInheritanceGenerator
             }
         }
 
-        public static ImmutableArray<TestTypeData> GetTestTypes(IAssemblySymbol assembly)
+        public static ValueSemanticsList<TestTypeData> GetTestTypes(IAssemblySymbol assembly)
         {
-            var result = new List<TestTypeData>();
+            var result = new ValueSemanticsList<TestTypeData>();
             var collector = new TestClassCollector(result);
             collector.Visit(assembly);
-            return result.ToImmutableArray();
+            return result;
         }
     }
 }

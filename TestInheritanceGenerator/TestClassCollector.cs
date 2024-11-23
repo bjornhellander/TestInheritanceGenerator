@@ -6,9 +6,10 @@ namespace TestInheritanceGenerator
 {
     internal class TestClassCollector : SymbolVisitor
     {
-        private readonly ICollection<TestTypeData> testTypes;
+        private readonly Dictionary<INamedTypeSymbol, string> attributeTypeNameCache = new(SymbolEqualityComparer.Default);
+        private readonly ValueSemanticsList<TestTypeData> testTypes;
 
-        public TestClassCollector(ICollection<TestTypeData> testTypes)
+        public TestClassCollector(ValueSemanticsList<TestTypeData> testTypes)
         {
             this.testTypes = testTypes;
         }
@@ -47,14 +48,26 @@ namespace TestInheritanceGenerator
             testTypes.Add(testType);
         }
 
-        private static bool IsTestType(INamedTypeSymbol symbol, out string? attributeName)
+        private bool IsTestType(INamedTypeSymbol symbol, out string? attributeName)
         {
             foreach (var attr in symbol.GetAttributes())
             {
-                if (attr.AttributeClass?.Name == "TestClassAttribute")
+                var attributeClass = attr.AttributeClass;
+                if (attributeClass == null)
                 {
-                    // TODO: Avoid allocation?
-                    attributeName = attr.AttributeClass.ToDisplayString();
+                    continue;
+                }
+
+                if (attributeTypeNameCache.TryGetValue(attributeClass, out var typeName))
+                {
+                    attributeName = typeName;
+                    return true;
+                }
+
+                if (attributeClass.Name == "TestClassAttribute")
+                {
+                    attributeName = attributeClass.ToDisplayString();
+                    attributeTypeNameCache.Add(attributeClass, attributeName);
                     return true;
                 }
             }
@@ -68,7 +81,7 @@ namespace TestInheritanceGenerator
                         case "FactAttribute":
                         case "TheoryAttribute":
                         case "TestAttribute":
-                        case "TestCaseAttriute":
+                        case "TestCaseAttribute":
                             attributeName = null;
                             return true;
 

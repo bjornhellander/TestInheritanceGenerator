@@ -2,7 +2,6 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-// TODO: Check these suppressions
 #pragma warning disable RS1004 // Recommend adding language support to diagnostic analyzer
 #pragma warning disable RS2008 // Enable analyzer release tracking
 
@@ -75,7 +74,7 @@ namespace TestInheritanceGenerator
             }
 
             var types = Helpers.GetTestTypes(baseAssembly);
-            if (types.Length == 0)
+            if (types.Count == 0)
             {
                 ReportDiagnostic(context, NoBaseTestsDescriptor);
                 return;
