@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.NUnitTest1", "test\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.NUnitTest2", "test\Example.NUnitTest2\Example.NUnitTest2.csproj", "{58A23FB0-3B0B-4EA9-A392-656AD06E0ABF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0E2221D4-5CB9-45D2-AFB8-F517230BB59C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Solution Items", "0 - Solution Items", "{0E2221D4-5CB9-45D2-AFB8-F517230BB59C}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
@@ -29,9 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9BFF3348-BDC2-416D-98A0-176F3CEF7D02}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - doc", "1 - doc", "{6FAC1B43-E751-4F92-AEBA-BF1098E87076}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F38380FB-3524-4148-B85E-213BDE1205E6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - src", "2 - src", "{9BFF3348-BDC2-416D-98A0-176F3CEF7D02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - test", "3 - test", "{F38380FB-3524-4148-B85E-213BDE1205E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
