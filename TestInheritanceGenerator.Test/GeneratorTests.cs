@@ -3,7 +3,6 @@ using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -359,6 +358,61 @@ namespace TestNamespace.V1
             tester.SolutionTransforms.Add((solution, projectId) =>
             {
                 solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests2");
+                return solution;
+            });
+
+            await tester.RunAsync();
+        }
+
+        [TestMethod]
+        [DataRow(0)]
+        [DataRow(1)]
+        public async Task TestMultipleBaseAssemblies(int order)
+        {
+            var sourceCode1 = CreateSourceCode("TestNamespace.V2", "FooTests");
+            var sourceCode2 = CreateSourceCode("TestNamespace.V2", "BarTests");
+            var generatedCode1 = CreateGeneratedCode("TestNamespace.V2", "TestNamespace.V3", "FooTests");
+            var generatedCode2 = CreateGeneratedCode("TestNamespace.V2", "TestNamespace.V3", "BarTests");
+            var projectReference1 = order == 0 ? "Example.Tests1" : "Example.Tests2";
+            var projectReference2 = order == 0 ? "Example.Tests2" : "Example.Tests1";
+
+            var tester = new CSharpSourceGeneratorTest<InheritanceGenerator, DefaultVerifier>
+            {
+                TestState =
+                {
+                    Sources = { "" },
+                    GeneratedSources =
+                    {
+                        (typeof(InheritanceGenerator), $"FooTests.g.cs", SourceText.From(generatedCode1, Encoding.UTF8)),
+                        (typeof(InheritanceGenerator), $"BarTests.g.cs", SourceText.From(generatedCode2, Encoding.UTF8)),
+                    },
+                    AdditionalProjectReferences =
+                    {
+                        projectReference1,
+                        projectReference2,
+                    },
+                    AdditionalProjects =
+                    {
+                        ["Example.Tests1"] =
+                        {
+                            Sources = { "" },
+                        },
+                        ["Example.Tests2"] =
+                        {
+                            Sources =
+                            {
+                                ("FooTests.cs", sourceCode1),
+                                ("BarTests.cs", sourceCode2),
+                            },
+                        },
+                    },
+                },
+                ReferenceAssemblies = CreateReferenceAssemblies(),
+            };
+
+            tester.SolutionTransforms.Add((solution, projectId) =>
+            {
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests3");
                 return solution;
             });
 
