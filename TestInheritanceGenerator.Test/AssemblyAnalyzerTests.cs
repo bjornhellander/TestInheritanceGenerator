@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 
 using VerifyCS = TestInheritanceGenerator.Test.Verifiers.CSharpAnalyzerVerifier<
@@ -42,12 +43,7 @@ namespace TestInheritanceGenerator.Test
 
             test.SolutionTransforms.Add((solution, projectId) =>
             {
-                var project = solution.GetProject(projectId);
-                if (project.Name == "TestProject")
-                {
-                    solution = solution.WithProjectAssemblyName(projectId, "Example.Tests" + version);
-                }
-
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests" + version);
                 return solution;
             });
 
@@ -89,15 +85,17 @@ namespace TestInheritanceGenerator.Test
 
             test.SolutionTransforms.Add((solution, projectId) =>
             {
-                var project = solution.GetProject(projectId);
-                if (project.Name == "TestProject")
-                {
-                    solution = solution.WithProjectAssemblyName(projectId, "Example.Tests" + version2);
-                }
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests" + version2);
                 return solution;
             });
 
             await test.RunAsync();
+        }
+
+        private static Solution SetMainProjectAssemblyName(Solution solution, ProjectId projectId, string assemblyName)
+        {
+            solution = solution.WithProjectAssemblyName(projectId, assemblyName);
+            return solution;
         }
     }
 }

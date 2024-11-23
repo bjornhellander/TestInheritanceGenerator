@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Testing;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -82,12 +83,7 @@ namespace TestInheritanceGenerator.Test
 
             tester.SolutionTransforms.Add((solution, projectId) =>
             {
-                var project = solution.GetProject(projectId);
-                if (project.Name == "TestProject")
-                {
-                    solution = solution.WithProjectAssemblyName(projectId, "Example.Tests" + version2);
-                }
-
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests" + version2);
                 return solution;
             });
 
@@ -97,6 +93,12 @@ namespace TestInheritanceGenerator.Test
         private ReferenceAssemblies CreateReferenceAssemblies()
         {
             return AddReferenceAssemblies(ReferenceAssemblies.Net.Net80);
+        }
+
+        private static Solution SetMainProjectAssemblyName(Solution solution, ProjectId projectId, string assemblyName)
+        {
+            solution = solution.WithProjectAssemblyName(projectId, assemblyName);
+            return solution;
         }
 
         protected abstract ReferenceAssemblies AddReferenceAssemblies(ReferenceAssemblies input);
