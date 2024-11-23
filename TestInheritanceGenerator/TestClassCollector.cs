@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 
 namespace TestInheritanceGenerator
@@ -12,11 +11,6 @@ namespace TestInheritanceGenerator
         public TestClassCollector(ValueSemanticsList<TestTypeData> testTypes)
         {
             this.testTypes = testTypes;
-        }
-
-        public override void DefaultVisit(ISymbol symbol)
-        {
-            throw new NotImplementedException();
         }
 
         public override void VisitAssembly(IAssemblySymbol symbol)
