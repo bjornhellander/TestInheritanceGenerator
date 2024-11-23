@@ -16,7 +16,7 @@
 		<RepositoryUrl>https://github.com/bjornhellander/TestInheritanceGenerator</RepositoryUrl>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<Copyright>Copyright © Björn Hellander 2024. Licensed under the MIT No Attribution license.</Copyright>
-		<PackageTags>Source Generator, Test</PackageTags>
+		<PackageTags>Roslyn, Source Generator, Test</PackageTags>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 		<!-- Do not include the generator as a lib dependency -->
