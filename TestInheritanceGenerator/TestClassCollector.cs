@@ -34,7 +34,7 @@ namespace TestInheritanceGenerator
 
         public override void VisitNamedType(INamedTypeSymbol symbol)
         {
-            if (symbol.IsAbstract || symbol.IsStatic || symbol.DeclaredAccessibility != Accessibility.Public)
+            if (symbol.IsAbstract || symbol.IsStatic)
             {
                 return;
             }
