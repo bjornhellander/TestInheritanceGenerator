@@ -45,6 +45,52 @@ namespace TestInheritanceGenerator.Test
         }
 
         [TestMethod]
+        public async Task TestStaticBaseType()
+        {
+            var sourceCode1 = $@"
+namespace TestNamespace.V1
+{{
+    public static class TheTests
+    {{
+    }}
+}}
+";
+            var generatedCode = CreateGeneratedCode("TestNamespace.V1", "TestNamespace.V2", "TheTests");
+
+            var tester = new CSharpSourceGeneratorTest<InheritanceGenerator, DefaultVerifier>
+            {
+                TestState =
+                {
+                    Sources = { "" },
+                    GeneratedSources = { },
+                    AdditionalProjectReferences =
+                    {
+                        "Example.Tests1",
+                    },
+                    AdditionalProjects =
+                    {
+                        ["Example.Tests1"] =
+                        {
+                            Sources =
+                            {
+                                ("Tests.cs", sourceCode1),
+                            },
+                        },
+                    },
+                },
+                ReferenceAssemblies = CreateReferenceAssemblies(),
+            };
+
+            tester.SolutionTransforms.Add((solution, projectId) =>
+            {
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests2");
+                return solution;
+            });
+
+            await tester.RunAsync();
+        }
+
+        [TestMethod]
         [DataRow("1", "2")]
         [DataRow("1_1", "1_2")]
         [DataRow("1_1_1", "1_1_2")]
