@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -94,6 +95,52 @@ namespace TestNamespace.V1
         public async Task TestAbstractBaseType()
         {
             var sourceCode1 = CreateSourceCode("TestNamespace.V1", "TheTests", extraTypeKeywords: "abstract ");
+            var generatedCode = CreateGeneratedCode("TestNamespace.V1", "TestNamespace.V2", "TheTests");
+
+            var tester = new CSharpSourceGeneratorTest<InheritanceGenerator, DefaultVerifier>
+            {
+                TestState =
+                {
+                    Sources = { "" },
+                    GeneratedSources = { },
+                    AdditionalProjectReferences =
+                    {
+                        "Example.Tests1",
+                    },
+                    AdditionalProjects =
+                    {
+                        ["Example.Tests1"] =
+                        {
+                            Sources =
+                            {
+                                ("Tests.cs", sourceCode1),
+                            },
+                        },
+                    },
+                },
+                ReferenceAssemblies = CreateReferenceAssemblies(),
+            };
+
+            tester.SolutionTransforms.Add((solution, projectId) =>
+            {
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests2");
+                return solution;
+            });
+
+            await tester.RunAsync();
+        }
+
+        [TestMethod]
+        public async Task TestNonTestBaseType()
+        {
+            var sourceCode1 = $@"
+namespace TestNamespace.V1
+{{
+    public class TheTests
+    {{
+    }}
+}}
+";
             var generatedCode = CreateGeneratedCode("TestNamespace.V1", "TestNamespace.V2", "TheTests");
 
             var tester = new CSharpSourceGeneratorTest<InheritanceGenerator, DefaultVerifier>
