@@ -91,6 +91,45 @@ namespace TestNamespace.V1
         }
 
         [TestMethod]
+        public async Task TestAbstractBaseType()
+        {
+            var sourceCode1 = CreateSourceCode("TestNamespace.V1", "TheTests", extraTypeKeywords: "abstract ");
+            var generatedCode = CreateGeneratedCode("TestNamespace.V1", "TestNamespace.V2", "TheTests");
+
+            var tester = new CSharpSourceGeneratorTest<InheritanceGenerator, DefaultVerifier>
+            {
+                TestState =
+                {
+                    Sources = { "" },
+                    GeneratedSources = { },
+                    AdditionalProjectReferences =
+                    {
+                        "Example.Tests1",
+                    },
+                    AdditionalProjects =
+                    {
+                        ["Example.Tests1"] =
+                        {
+                            Sources =
+                            {
+                                ("Tests.cs", sourceCode1),
+                            },
+                        },
+                    },
+                },
+                ReferenceAssemblies = CreateReferenceAssemblies(),
+            };
+
+            tester.SolutionTransforms.Add((solution, projectId) =>
+            {
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests2");
+                return solution;
+            });
+
+            await tester.RunAsync();
+        }
+
+        [TestMethod]
         [DataRow("1", "2")]
         [DataRow("1_1", "1_2")]
         [DataRow("1_1_1", "1_1_2")]
@@ -149,7 +188,7 @@ namespace TestNamespace.V1
 
         protected abstract ReferenceAssemblies AddReferenceAssemblies(ReferenceAssemblies input);
 
-        protected abstract string CreateSourceCode(string @namespace, string name);
+        protected abstract string CreateSourceCode(string @namespace, string name, string extraTypeKeywords = "");
 
         protected abstract string CreateGeneratedCode(string namespace1, string namespace2, string name);
     }
