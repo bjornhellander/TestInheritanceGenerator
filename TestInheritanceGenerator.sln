@@ -30,6 +30,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Solution Items", "0 - S
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - doc", "1 - doc", "{6FAC1B43-E751-4F92-AEBA-BF1098E87076}"
+	ProjectSection(SolutionItems) = preProject
+		doc\TestInh001.md = doc\TestInh001.md
+		doc\TestInh002.md = doc\TestInh002.md
+		doc\TestInh003.md = doc\TestInh003.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - src", "2 - src", "{9BFF3348-BDC2-416D-98A0-176F3CEF7D02}"
 EndProject
