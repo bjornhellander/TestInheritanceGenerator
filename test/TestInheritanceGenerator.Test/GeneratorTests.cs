@@ -419,6 +419,91 @@ namespace TestNamespace.V1
             await tester.RunAsync();
         }
 
+        [TestMethod]
+        public async Task TestClassAlreadyExists()
+        {
+            var sourceCode1 = CreateSourceCode("TestNamespace.V1", "TheTests");
+            var sourceCode2 = CreateSourceCode("TestNamespace.V2", "TheTests", extraTypeKeywords: "partial ");
+            var generatedCode1 = CreateGeneratedCode("TestNamespace.V1", "TestNamespace.V2", "TheTests", addAttribute: false);
+
+            var tester = new CSharpSourceGeneratorTest<InheritanceGenerator, DefaultVerifier>
+            {
+                TestState =
+                {
+                    Sources =
+                    {
+                        ("TheTests.cs", sourceCode2),
+                    },
+                    GeneratedSources =
+                    {
+                        (typeof(InheritanceGenerator), $"TheTests.g.cs", SourceText.From(generatedCode1, Encoding.UTF8)),
+                    },
+                    AdditionalProjectReferences =
+                    {
+                        "Example.Tests1",
+                    },
+                    AdditionalProjects =
+                    {
+                        ["Example.Tests1"] =
+                        {
+                            Sources =
+                            {
+                                ("TheTests.cs", sourceCode1),
+                            },
+                        },
+                    },
+                },
+                ReferenceAssemblies = CreateReferenceAssemblies(),
+            };
+
+            tester.SolutionTransforms.Add((solution, projectId) =>
+            {
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests2");
+                return solution;
+            });
+
+            await tester.RunAsync();
+        }
+
+        [TestMethod]
+        public async Task BaseTestClassHasSkipInheritanceGenerationAttribute()
+        {
+            var sourceCode1 = CreateSourceCode("TestNamespace.V1", "TheTests", addSkipInheritanceGenerationAttribute: true);
+
+            var tester = new CSharpSourceGeneratorTest<InheritanceGenerator, DefaultVerifier>
+            {
+                TestState =
+                {
+                    Sources = { "" },
+                    GeneratedSources = { },
+                    AdditionalProjectReferences =
+                    {
+                        "Example.Tests1",
+                    },
+                    AdditionalProjects =
+                    {
+                        ["Example.Tests1"] =
+                        {
+                            Sources =
+                            {
+                                ("SkipInheritanceGenerationAttribute.cs", "internal class SkipInheritanceGenerationAttribute : System.Attribute { }"),
+                                ("TheTests.cs", sourceCode1),
+                            },
+                        },
+                    },
+                },
+                ReferenceAssemblies = CreateReferenceAssemblies(),
+            };
+
+            tester.SolutionTransforms.Add((solution, projectId) =>
+            {
+                solution = SetMainProjectAssemblyName(solution, projectId, "Example.Tests2");
+                return solution;
+            });
+
+            await tester.RunAsync();
+        }
+
         private ReferenceAssemblies CreateReferenceAssemblies()
         {
             return AddReferenceAssemblies(ReferenceAssemblies.Net.Net80);
@@ -432,8 +517,8 @@ namespace TestNamespace.V1
 
         protected abstract ReferenceAssemblies AddReferenceAssemblies(ReferenceAssemblies input);
 
-        protected abstract string CreateSourceCode(string @namespace, string name, string extraTypeKeywords = "");
+        protected abstract string CreateSourceCode(string @namespace, string name, string extraTypeKeywords = "", bool addSkipInheritanceGenerationAttribute = false);
 
-        protected abstract string CreateGeneratedCode(string namespace1, string namespace2, string name);
+        protected abstract string CreateGeneratedCode(string namespace1, string namespace2, string name, bool addAttribute = true);
     }
 }

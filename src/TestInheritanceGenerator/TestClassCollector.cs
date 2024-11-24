@@ -44,6 +44,7 @@ namespace TestInheritanceGenerator
 
         private bool IsTestType(INamedTypeSymbol symbol, out string? attributeName)
         {
+            INamedTypeSymbol? testAttributeType = null;
             foreach (var attr in symbol.GetAttributes())
             {
                 var attributeClass = attr.AttributeClass;
@@ -52,18 +53,28 @@ namespace TestInheritanceGenerator
                     continue;
                 }
 
-                if (attributeTypeNameCache.TryGetValue(attributeClass, out var typeName))
+                switch (attributeClass.Name)
                 {
-                    attributeName = typeName;
-                    return true;
+                    case "TestClassAttribute":
+                        testAttributeType = attributeClass;
+                        break;
+
+                    case "SkipInheritanceGenerationAttribute":
+                        attributeName = null;
+                        return false;
+                }
+            }
+
+            if (testAttributeType != null)
+            {
+                if (!attributeTypeNameCache.TryGetValue(testAttributeType, out var typeName))
+                {
+                    typeName = testAttributeType.ToDisplayString();
+                    attributeTypeNameCache.Add(testAttributeType, typeName);
                 }
 
-                if (attributeClass.Name == "TestClassAttribute")
-                {
-                    attributeName = attributeClass.ToDisplayString();
-                    attributeTypeNameCache.Add(attributeClass, attributeName);
-                    return true;
-                }
+                attributeName = typeName;
+                return true;
             }
 
             foreach (var method in symbol.GetMembers().OfType<IMethodSymbol>())
