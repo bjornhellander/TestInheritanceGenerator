@@ -14,6 +14,8 @@ Add a reference to this nuget package in the package you want to inherit test in
 also reference the test project for the previous version.
 
 It is possible to disable inheritance generation for specific test classes by adding an attribute called SkipInheritanceGenerationAttribute.
+This attribute can be added in the test project where it is needed, as long as it has that specific name.
+It is also available in a NuGet package called TestInheritanceGenerator.Annotations.
 
 ## Supported test frameworks
 
