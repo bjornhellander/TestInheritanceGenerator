@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInheritanceGenerator", "src\TestInheritanceGenerator\TestInheritanceGenerator.csproj", "{AA89D53D-61E8-4901-AE7C-6A3B840DF82E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInheritanceGenerator.Annotations", "src\TestInheritanceGenerator.Annotations\TestInheritanceGenerator.Annotations.csproj", "{9E1A41D4-81A0-4AEF-8E93-DD32E89A3C88}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInheritanceGenerator.Test", "test\TestInheritanceGenerator.Test\TestInheritanceGenerator.Test.csproj", "{4FD8A162-2114-46BB-91CE-848F3CB50BA6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.XUnitTest1", "test\Example.XUnitTest1\Example.XUnitTest1.csproj", "{DEB486F2-029A-4D0D-B016-9A468A1EB5DE}"
@@ -41,8 +43,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - src", "2 - src", "{9BFF3348-BDC2-416D-98A0-176F3CEF7D02}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - test", "3 - test", "{F38380FB-3524-4148-B85E-213BDE1205E6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInheritanceGenerator.Annotations", "src\TestInheritanceGenerator.Annotations\TestInheritanceGenerator.Annotations.csproj", "{9E1A41D4-81A0-4AEF-8E93-DD32E89A3C88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
