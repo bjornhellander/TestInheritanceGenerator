@@ -5,7 +5,7 @@
 
 	<PropertyGroup>
 		<Description>Source generator support package containing attributes that can be used to tweak code generation.</Description>
-		<PackageVersion>1.0.0.0-rc.1</PackageVersion>
+		<PackageVersion>1.0.0.0</PackageVersion>
 		<Authors>Björn Hellander</Authors>
 		<PackageLicenseExpression>MIT-0</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/bjornhellander/TestInheritanceGenerator</PackageProjectUrl>
