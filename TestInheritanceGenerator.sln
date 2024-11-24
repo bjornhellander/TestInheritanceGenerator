@@ -25,7 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Solution Items", "0 - S
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		.github\workflows\build.yml = .github\workflows\build.yml
+		HOWTO.txt = HOWTO.txt
 		LICENSE.txt = LICENSE.txt
+		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
 EndProject
