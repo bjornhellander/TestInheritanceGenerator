@@ -12,13 +12,14 @@ namespace TestInheritanceGenerator.Test
             return result;
         }
 
-        protected override string CreateSourceCode(string @namespace, string name, string extraTypeKeywords)
+        protected override string CreateSourceCode(string @namespace, string name, string extraTypeKeywords, bool addSkipInheritanceGenerationAttribute)
         {
             var result = $@"
 using Xunit;
 
 namespace {@namespace}
 {{
+    {(addSkipInheritanceGenerationAttribute ? "[SkipInheritanceGeneration]" : "")}
     public {extraTypeKeywords}class {name}
     {{
         [Fact]

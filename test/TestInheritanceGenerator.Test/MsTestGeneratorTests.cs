@@ -12,7 +12,7 @@ namespace TestInheritanceGenerator.Test
             return result;
         }
 
-        protected override string CreateSourceCode(string @namespace, string name, string extraTypeKeywords)
+        protected override string CreateSourceCode(string @namespace, string name, string extraTypeKeywords, bool addSkipInheritanceGenerationAttribute)
         {
             var result = $@"
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,6 +20,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace {@namespace}
 {{
     [TestClass]
+    {(addSkipInheritanceGenerationAttribute ? "[SkipInheritanceGeneration]" : "")}
     public {extraTypeKeywords}class {name}
     {{
     }}
