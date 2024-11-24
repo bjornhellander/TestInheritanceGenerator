@@ -27,6 +27,6 @@ The following diagnostics are reported as guidance, if no tests are being genera
 * [TestInherit002 - No base assembly](https://github.com/bjornhellander/TestInheritanceGenerator/blob/master/doc/TestInh002.md)
 * [TestInherit003 - No tests in base assembly](https://github.com/bjornhellander/TestInheritanceGenerator/blob/master/doc/TestInh003.md)
 
-## Credit
+## Credits
 
 This work is heavily inspired by a similar source generator implemented by [Sam Harwell](https://github.com/sharwell) in [StyleCop.Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers).

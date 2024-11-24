@@ -8,7 +8,7 @@
 
 	<PropertyGroup>
 		<Description>Source generator package which adds automatic test class inheritance from another test project. Handy if you have test projects per version of some software component and want to run all tests written for a previous version as well.</Description>
-		<PackageVersion>1.0.0.0-rc9</PackageVersion>
+		<PackageVersion>1.0.0.0-rc10</PackageVersion>
 		<Authors>Björn Hellander</Authors>
 		<PackageLicenseExpression>MIT-0</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/bjornhellander/TestInheritanceGenerator</PackageProjectUrl>
@@ -16,7 +16,7 @@
 		<RepositoryUrl>https://github.com/bjornhellander/TestInheritanceGenerator</RepositoryUrl>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<Copyright>Copyright © Björn Hellander 2024. Licensed under the MIT No Attribution license.</Copyright>
-		<PackageTags>Roslyn, Source Generator, Test</PackageTags>
+		<PackageTags>Roslyn, Generator, SourceGenerator, Test</PackageTags>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 		<!-- Do not include the generator as a lib dependency -->
@@ -28,6 +28,10 @@
 	<ItemGroup>
 		<!-- Package the generator in the analyzer directory of the nuget package -->
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 
 	<ItemGroup>
