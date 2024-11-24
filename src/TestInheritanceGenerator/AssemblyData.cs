@@ -4,5 +4,6 @@
         string NamePrefix,
         string Version,
         string BaseAssemblyVersion,
-        ValueSemanticsList<TestTypeData> TestTypes);
+        ValueSemanticsList<TestTypeData> BaseTestTypes,
+        ValueSemanticsList<TestTypeData> CurrTestTypes);
 }

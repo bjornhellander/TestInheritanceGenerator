@@ -27,12 +27,12 @@ namespace {@namespace}
             return result;
         }
 
-        protected override string CreateGeneratedCode(string namespace1, string namespace2, string name)
+        protected override string CreateGeneratedCode(string namespace1, string namespace2, string name, bool addAttribute)
         {
             var result = $@"
 namespace {namespace2}
 {{
-    [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute]
+    {(addAttribute ? "[Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute]" : "")}
     public partial class {name} : {namespace1}.{name}
     {{
     }}

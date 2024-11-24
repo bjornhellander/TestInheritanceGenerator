@@ -30,8 +30,10 @@ namespace {@namespace}
             return result;
         }
 
-        protected override string CreateGeneratedCode(string namespace1, string namespace2, string name)
+        protected override string CreateGeneratedCode(string namespace1, string namespace2, string name, bool addAttribute)
         {
+            _ = addAttribute;
+
             var result = $@"
 namespace {namespace2}
 {{
