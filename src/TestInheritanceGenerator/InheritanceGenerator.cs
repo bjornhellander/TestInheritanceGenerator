@@ -61,7 +61,9 @@ namespace {currNamespace}
     }}
 }}
 ";
-                context.AddSource($"{baseTestType.Name}.g.cs", SourceText.From(source, System.Text.Encoding.UTF8));
+
+                var fileName = $"{currNamespace}.{baseTestType.Name}.g.cs";
+                context.AddSource(fileName, SourceText.From(source, System.Text.Encoding.UTF8));
             }
         }
     }

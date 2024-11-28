@@ -289,7 +289,7 @@ namespace TestNamespace.V1
                     Sources = { "" },
                     GeneratedSources =
                     {
-                        (typeof(InheritanceGenerator), $"TheTests.g.cs", SourceText.From(generatedCode, Encoding.UTF8)),
+                        (typeof(InheritanceGenerator), $"TestNamespace.V{version2}.TheTests.g.cs", SourceText.From(generatedCode, Encoding.UTF8)),
                     },
                     AdditionalProjectReferences =
                     {
@@ -333,8 +333,8 @@ namespace TestNamespace.V1
                     Sources = { "" },
                     GeneratedSources =
                     {
-                        (typeof(InheritanceGenerator), $"FooTests.g.cs", SourceText.From(generatedCode1, Encoding.UTF8)),
-                        (typeof(InheritanceGenerator), $"BarTests.g.cs", SourceText.From(generatedCode2, Encoding.UTF8)),
+                        (typeof(InheritanceGenerator), $"TestNamespace.V2.FooTests.g.cs", SourceText.From(generatedCode1, Encoding.UTF8)),
+                        (typeof(InheritanceGenerator), $"TestNamespace.V2.BarTests.g.cs", SourceText.From(generatedCode2, Encoding.UTF8)),
                     },
                     AdditionalProjectReferences =
                     {
@@ -383,8 +383,8 @@ namespace TestNamespace.V1
                     Sources = { "" },
                     GeneratedSources =
                     {
-                        (typeof(InheritanceGenerator), $"FooTests.g.cs", SourceText.From(generatedCode1, Encoding.UTF8)),
-                        (typeof(InheritanceGenerator), $"BarTests.g.cs", SourceText.From(generatedCode2, Encoding.UTF8)),
+                        (typeof(InheritanceGenerator), $"TestNamespace.V3.FooTests.g.cs", SourceText.From(generatedCode1, Encoding.UTF8)),
+                        (typeof(InheritanceGenerator), $"TestNamespace.V3.BarTests.g.cs", SourceText.From(generatedCode2, Encoding.UTF8)),
                     },
                     AdditionalProjectReferences =
                     {
@@ -436,7 +436,7 @@ namespace TestNamespace.V1
                     },
                     GeneratedSources =
                     {
-                        (typeof(InheritanceGenerator), $"TheTests.g.cs", SourceText.From(generatedCode1, Encoding.UTF8)),
+                        (typeof(InheritanceGenerator), $"TestNamespace.V2.TheTests.g.cs", SourceText.From(generatedCode1, Encoding.UTF8)),
                     },
                     AdditionalProjectReferences =
                     {
