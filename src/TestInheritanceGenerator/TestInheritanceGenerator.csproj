@@ -8,7 +8,7 @@
 
 	<PropertyGroup>
 		<Description>Source generator package which adds automatic test class inheritance from another test project. Handy if you have test projects per version of some software component and want to run all tests written for a previous version as well.</Description>
-		<PackageVersion>1.1.0.0-alpha.1</PackageVersion>
+		<PackageVersion>1.1.0.0</PackageVersion>
 		<Authors>Björn Hellander</Authors>
 		<PackageLicenseExpression>MIT-0</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/bjornhellander/TestInheritanceGenerator</PackageProjectUrl>
