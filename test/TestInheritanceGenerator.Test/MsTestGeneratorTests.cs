@@ -1,4 +1,7 @@
-﻿using Microsoft.CodeAnalysis.Testing;
+﻿// Copyright (c) Björn Hellander 2024.
+// Licensed under the MIT No Attribution license.
+
+using Microsoft.CodeAnalysis.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestInheritanceGenerator.Test

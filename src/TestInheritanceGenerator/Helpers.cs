@@ -1,8 +1,11 @@
-﻿using Microsoft.CodeAnalysis;
+﻿// Copyright (c) Björn Hellander 2024.
+// Licensed under the MIT No Attribution license.
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.CodeAnalysis;
 
 namespace TestInheritanceGenerator
 {

@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Björn Hellander 2024.
+// Licensed under the MIT No Attribution license.
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +29,9 @@ namespace TestInheritanceGenerator
             return ((IEnumerable<T>)actual).GetEnumerator();
         }
 
-        public override bool Equals(object? other)
+        public override bool Equals(object? obj)
         {
-            return other is ValueSemanticsList<T> list &&
+            return obj is ValueSemanticsList<T> list &&
                 actual.SequenceEqual(list.actual);
         }
 
@@ -37,8 +40,9 @@ namespace TestInheritanceGenerator
             int hashCode = 1502939027;
             foreach (var item in actual)
             {
-                hashCode = hashCode * -1521134295 + EqualityComparer<T>.Default.GetHashCode(item);
+                hashCode = (hashCode * -1521134295) + EqualityComparer<T>.Default.GetHashCode(item);
             }
+
             return hashCode;
         }
     }

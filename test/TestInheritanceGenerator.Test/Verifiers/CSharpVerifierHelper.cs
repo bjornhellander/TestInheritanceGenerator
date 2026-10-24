@@ -1,7 +1,10 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
+﻿// Copyright (c) Björn Hellander 2024.
+// Licensed under the MIT No Attribution license.
+
 using System;
 using System.Collections.Immutable;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace TestInheritanceGenerator.Test.Verifiers
 {

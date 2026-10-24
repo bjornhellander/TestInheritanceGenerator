@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿// Copyright (c) Björn Hellander 2024.
+// Licensed under the MIT No Attribution license.
+
+using System.ComponentModel;
 
 #pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace System.Runtime.CompilerServices

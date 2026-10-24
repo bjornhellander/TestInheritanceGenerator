@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) Björn Hellander 2024.
+// Licensed under the MIT No Attribution license.
+
+using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 
 namespace TestInheritanceGenerator
