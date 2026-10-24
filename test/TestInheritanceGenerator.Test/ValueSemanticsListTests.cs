@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Copyright (c) Björn Hellander 2024.
+// Licensed under the MIT No Attribution license.
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestInheritanceGenerator.Test
 {
@@ -46,6 +49,7 @@ namespace TestInheritanceGenerator.Test
             {
                 result.Add(i);
             }
+
             return result;
         }
     }

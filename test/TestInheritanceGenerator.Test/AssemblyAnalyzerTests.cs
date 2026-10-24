@@ -1,7 +1,9 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Threading.Tasks;
+﻿// Copyright (c) Björn Hellander 2024.
+// Licensed under the MIT No Attribution license.
 
+using System.Threading.Tasks;
+using Microsoft.CodeAnalysis;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VerifyCS = TestInheritanceGenerator.Test.Verifiers.CSharpAnalyzerVerifier<
     TestInheritanceGenerator.AssemblyAnalyzer>;
 
@@ -77,7 +79,8 @@ namespace TestInheritanceGenerator.Test
                         },
                     },
                 },
-                ExpectedDiagnostics = {
+                ExpectedDiagnostics =
+                {
                     VerifyCS.Diagnostic(AssemblyAnalyzer.NoBaseTestsDiagnosticId), // From the main project
                     VerifyCS.Diagnostic(AssemblyAnalyzer.NoBaseAssemblyDiagnosticId), // From the additional project
                 },

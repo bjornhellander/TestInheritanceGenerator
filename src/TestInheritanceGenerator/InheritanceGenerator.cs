@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) Björn Hellander 2024.
+// Licensed under the MIT No Attribution license.
+
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -23,7 +26,7 @@ namespace TestInheritanceGenerator
                 }
 
                 var baseTypes = Helpers.GetTestTypes(baseAssembly);
-                var currTypes = Helpers.GetTestTypes(compilation.Assembly); ;
+                var currTypes = Helpers.GetTestTypes(compilation.Assembly);
 
                 return new AssemblyData(assemblyPrefix, assemblyVersion, baseAssemblyVersion, baseTypes, currTypes);
             });
