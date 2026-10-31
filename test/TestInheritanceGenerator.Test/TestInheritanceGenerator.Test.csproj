@@ -14,7 +14,7 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Analyzer.Testing" Version="1.1.4" />
 		<PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.CodeFix.Testing" Version="1.1.4" />
 		<PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.CodeRefactoring.Testing" Version="1.1.4" />
-		<PackageReference Include="MSTest" Version="4.5.1" />
+		<PackageReference Include="MSTest" Version="4.5.2" />
 	</ItemGroup>
 
 	<ItemGroup>
